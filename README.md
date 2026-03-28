@@ -1,2 +1,1 @@
-└── test-cases/
-    └── events-page-tests.md
+test-cases/events-page-tests.md
