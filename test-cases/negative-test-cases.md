@@ -10,7 +10,6 @@
 
 
 **Title:** Спроба зареєструватися з некоректними даними  
-
 **Preconditions:** Відкритий сайт GreenCity, доступна форма реєстрації  
 
 | Step | Action | Data | Expected Result |
