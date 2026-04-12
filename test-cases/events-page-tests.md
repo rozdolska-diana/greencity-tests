@@ -1,4 +1,4 @@
-**Title:** Перевірка завантаження сторінки Events
+**Title:** Перевірка завантаження сторінки Events  
 **Preconditions:** Відкритий браузер, користувач на сайті GreenCity  
 
 | Step | Action | Data | Expected Result |
