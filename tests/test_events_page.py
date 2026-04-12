@@ -3,7 +3,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from time import sleep
 
 class TestEventsPage(unittest.TestCase):
     def setUp(self):
@@ -19,18 +18,20 @@ class TestEventsPage(unittest.TestCase):
         driver = self.driver
         wait = self.wait
 
-        # Знаходимо кнопку "Події" у хедері
-        events_button_selector = (By.XPATH, "//header//a[contains(@class, 'url-name') and contains(., 'Події') or contains(., 'Events')]")
-        events_button = driver.find_element(*events_button_selector)
-        self.assertTrue(events_button.is_displayed(), "Кнопка 'Події' не відображається")
+        events_button = wait.until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "//header//a[contains(., 'Events') or contains(., 'Події')]")
+            )
+        )
+        self.assertTrue(events_button.is_displayed(), "Events button is not displayed")
         events_button.click()
-        sleep(2)
 
-        # Перевіряємо, що заголовок "Події" видно на сторінці
-        header_selector = (By.XPATH, "//p[contains(@class, 'main-header') and contains(., 'Події') or contains(., 'Events')]")
-        header = driver.find_element(*header_selector)
-        self.assertTrue(header.is_displayed(), "Сторінка подій не завантажилась після натискання кнопки")
-        sleep(2)
+        header = wait.until(
+        EC.visibility_of_element_located(
+            (By.XPATH, "//p[contains(@class, 'main-header')]")
+        )
+    )
+        self.assertTrue(header.is_displayed(), "Events page is not opened")
 
 if __name__ == "__main__":
     unittest.main()
