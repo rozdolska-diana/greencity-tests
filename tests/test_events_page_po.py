@@ -13,11 +13,17 @@ class TestEventsPage(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()  
 
-    def test_open_events_page(self):
-        page = EventsPage(self.driver)
-        page.navigate_to_events()  
+    def test_events_button_po(self):
+        page = BasePage(self.driver)
+        
+        events_button = page.get_events_link()
+        self.assertTrue(events_button.is_displayed(), "Events button is not displayed")
+       
+        page.navigate_to_events()
 
-        self.assertIn("events", self.driver.current_url.lower())
+        events_page = EventsPage(self.driver)
+        header = events_page.get_main_header()
+        self.assertTrue(header.is_displayed(), "Events page is not opened")
 
 if __name__ == "__main__":
     unittest.main()
